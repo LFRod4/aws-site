@@ -1,0 +1,19 @@
+{
+    "develop": {
+        "awscloudformation": {
+            "AuthRoleName": "aws-site-develop-20190706092022-authRole",
+            "UnauthRoleArn": "arn:aws:iam::543774592810:role/aws-site-develop-20190706092022-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::543774592810:role/aws-site-develop-20190706092022-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "aws-site-develop-20190706092022-deployment",
+            "UnauthRoleName": "aws-site-develop-20190706092022-unauthRole",
+            "StackName": "aws-site-develop-20190706092022",
+            "StackId": "arn:aws:cloudformation:eu-west-1:543774592810:stack/aws-site-develop-20190706092022/f54217d0-a009-11e9-8f9b-028618ba0c7c"
+        },
+        "categories": {
+            "auth": {
+                "awssitea2e4615f": {}
+            }
+        }
+    }
+}
