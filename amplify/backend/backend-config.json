@@ -10,5 +10,17 @@
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"function": {
+		"awssitea781ef44": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"awssite3cc6f0e2": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
 	}
 }

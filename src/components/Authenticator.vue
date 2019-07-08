@@ -1,6 +1,12 @@
 <template>
   <div class="hello">
-    <amplify-authenticator></amplify-authenticator>
+    <div v-if="!signedIn">
+      <amplify-authenticator></amplify-authenticator>
+    </div>
+    <div v-if="signedIn">
+      <amplify-sign-out></amplify-sign-out>
+    </div>
+    {{ signedIn }}
   </div>
 </template>
 
@@ -11,9 +17,7 @@ import { AmplifyEventBus } from "aws-amplify-vue";
 export default {
   name: "Athenticator",
   data() {
-    return {
-      signedIn: false
-    };
+    return {};
   },
   props: {
     msg: String
@@ -25,7 +29,7 @@ export default {
       if (info === "signedIn") {
         this.findUser();
       } else {
-        this.signedIn = false;
+        this.$store.state.signedIn = false;
       }
     });
   },
@@ -33,10 +37,15 @@ export default {
     async findUser() {
       try {
         const user = await Auth.currentAuthenticatedUser();
-        this.signedIn = true;
+        this.$store.state.signedIn = true;
       } catch (err) {
-        this.signedIn = false;
+        this.$store.state.signedIn = false;
       }
+    }
+  },
+  computed: {
+    signedIn() {
+      return this.$store.state.signedIn;
     }
   }
 };
