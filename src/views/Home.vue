@@ -6,7 +6,7 @@
         <div class="container">
           <div class="navbar-brand">
             <a class="navbar-item">
-              <h3 class="subtitle has-text-white">Luis Rodriguez</h3>
+              <h3 class="subtitle has-text-white is-size-5">Luis Rodriguez</h3>
             </a>
             <span class="navbar-burger burger" data-target="navbarMenuHeroA">
               <span></span>
@@ -16,15 +16,35 @@
           </div>
           <div id="navbarMenuHeroA" class="navbar-menu">
             <div class="navbar-end">
-              <a class="navbar-item has-text-white" v-scroll-to="`#projects`"
+              <a
+                class="navbar-item is-size-5 has-text-white top-nav"
+                v-scroll-to="`#projects`"
                 >Projects</a
               >
-              <a class="navbar-item has-text-white" v-scroll-to="`#aboutMe`"
+              <a
+                class="navbar-item is-size-5 has-text-white top-nav"
+                v-scroll-to="`#aboutMe`"
                 >About Me</a
               >
-              <a class="navbar-item has-text-white" @click="logInAttempt = true"
+              <a
+                v-if="signedIn === true"
+                class="navbar-item is-size-5 has-text-white top-nav"
+                v-scroll-to="`#aboutMe`"
+                >About Me</a
+              >
+              <a
+                class="navbar-item is-size-5 has-text-white top-nav"
+                @click="logInAttempt = true"
                 >Log In</a
               >
+              <a
+                v-if="signedIn === true"
+                class="navbar-item is-size-5 has-text-white top-nav"
+                @click="logInAttempt = true"
+              >
+                Sign Out
+                <amplify-sign-out></amplify-sign-out>
+              </a>
             </div>
           </div>
         </div>
@@ -55,77 +75,116 @@
           <div class="container">
             <h1 class="title">Projects</h1>
             <div class="tile is-ancestor">
-              <div class="tile is-4 is-vertical is-parent">
-                <div class="tile is-child box">
-                  <p class="title">Personal Site</p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin ornare magna eros, eu pellentesque tortor vestibulum
-                    ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
-                    facilisis.
-                  </p>
-                  <button class="button is-primary is-inline-block">
-                    Check It Out
-                  </button>
-                  <span
-                    class="icon is-large has-text-primary is-inline-block git-icon"
-                  >
-                    <i class="fab fa-github"></i>
-                  </span>
-                </div>
-                <div class="tile is-child box">
-                  <p class="title">Angular Quiz</p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin ornare magna eros, eu pellentesque tortor vestibulum
-                    ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
-                    facilisis.
-                  </p>
-                  <button class="button is-primary is-inline-block">
-                    Check It Out
-                  </button>
-                  <span
-                    class="icon is-large has-text-primary is-inline-block git-icon"
-                  >
-                    <i class="fab fa-github svg-inline--fa"></i>
-                  </span>
+              <div class="tile is-parent">
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title title">Personal Site</p>
+                  </header>
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img
+                        src="../assets/images/portfolio.png"
+                        alt="Placeholder image"
+                      />
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <p class="sub-title">
+                      “There are two hard things in computer science: cache
+                      invalidation, naming things, and off-by-one errors.”
+                    </p>
+                    <p class="subtitle">Jeff Atwood</p>
+                    <div class="container">
+                      <a
+                        class="button is-primary is-outlined"
+                        v-scroll-to="`#top`"
+                        >Check It Out</a
+                      >
+                      <a
+                        class="button is-primary is-outlined git-icon"
+                        href="https://github.com/LFRod4/aws-site"
+                        target="_blank"
+                      >
+                        <span class="icon is-small">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>GitHub</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="tile is-parent">
-                <div class="tile is-child box">
-                  <p class="title">VueJS Story Teller</p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam semper diam at erat pulvinar, at pulvinar felis
-                    blandit. Vestibulum volutpat tellus diam, consequat gravida
-                    libero rhoncus ut. Morbi maximus, leo sit amet vehicula
-                    eleifend, nunc dui porta orci, quis semper odio felis ut
-                    quam.
-                  </p>
-                  <p>
-                    Suspendisse varius ligula in molestie lacinia. Maecenas
-                    varius eget ligula a sagittis. Pellentesque interdum, nisl
-                    nec interdum maximus, augue diam porttitor lorem, et
-                    sollicitudin felis neque sit amet erat. Maecenas imperdiet
-                    felis nisi, fringilla luctus felis hendrerit sit amet.
-                    Aenean vitae gravida diam, finibus dignissim turpis. Sed
-                    eget varius ligula, at volutpat tortor.
-                  </p>
-                  <p>
-                    Integer sollicitudin, tortor a mattis commodo, velit urna
-                    rhoncus erat, vitae congue lectus dolor consequat libero.
-                    Donec leo ligula, maximus et pellentesque sed, gravida a
-                    metus. Cras ullamcorper a nunc ac porta. Aliquam ut aliquet
-                    lacus, quis faucibus libero. Quisque non semper leo.
-                  </p>
-                  <button class="button is-primary is-inline-block">
-                    Check It Out
-                  </button>
-                  <span
-                    class="icon is-large has-text-primary git-icon is-inline-block"
-                  >
-                    <i class="fab fa-github"></i>
-                  </span>
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title title">Angular Quiz</p>
+                  </header>
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img
+                        src="../assets/images/angular-quiz.png"
+                        alt="Angular Quiz"
+                      />
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <p class="sub-title">
+                      “There are two hard things in computer science: cache
+                      invalidation, naming things, and off-by-one errors.”
+                    </p>
+                    <p class="subtitle">Jeff Atwood</p>
+                    <div class="container">
+                      <a
+                        class="button is-primary is-outlined"
+                        href="https://vigorous-poincare-7385ea.netlify.com/"
+                        target="_blank"
+                        >Check It Out</a
+                      >
+                      <a
+                        class="button is-primary is-outlined git-icon"
+                        href="https://github.com/LFRod4/Angular-JS-Quiz"
+                        target="_blank"
+                      >
+                        <span class="icon is-small">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>GitHub</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tile is-parent">
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title title">VueJS</p>
+                  </header>
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img
+                        src="https://bulma.io/images/placeholders/1280x960.png"
+                        alt="Placeholder image"
+                      />
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <p class="sub-title">
+                      “There are two hard things in computer science: cache
+                      invalidation, naming things, and off-by-one errors.”
+                    </p>
+                    <p class="subtitle">Jeff Atwood</p>
+                    <div class="container">
+                      <button class="button is-primary is-outlined">
+                        Check It Out
+                      </button>
+                      <a class="button is-primary is-outlined git-icon">
+                        <span class="icon is-small">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>GitHub</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -134,6 +193,16 @@
         <section id="aboutMe" class="section">
           <div class="container">
             <h1 class="title">About Me</h1>
+          </div>
+          <div class="about-content">
+            <div class="columns">
+              <div class="column is-three-fifths code-img-container">
+                <img class="code-image" src="../assets/images/code.png" />
+              </div>
+              <div class="column dev-img-container">
+                <img class="dev-image" src="../assets/images/dev-pic.png" />
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -144,18 +213,18 @@
       </div>
     </div>
     <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot footer" style="display: none;">
+    <div class="hero-foot">
       <nav class="tabs is-boxed is-fullwidth">
         <div class="container">
           <ul>
             <li>
-              <a>Projects</a>
+              <a v-scroll-to="`#projects`">Projects</a>
             </li>
             <li>
-              <a>About Me</a>
+              <a v-scroll-to="`#aboutMe`">About Me</a>
             </li>
             <li>
-              <a>Sign In</a>
+              <a v-scroll-to="`#top`">Sign In</a>
             </li>
           </ul>
         </div>
@@ -167,31 +236,31 @@
 <script>
 // @ is an alias to /src
 import Authenticator from "@/components/Authenticator.vue";
-import SignUp from "@/components/SignUp.vue";
 
 export default {
   name: "home",
   components: {
-    SignUp,
     Authenticator
   },
   data: function() {
     return {
-      logInAttempt: false,
       info: ""
     };
+  },
+
+  methods: {},
+  computed: {
+    signedIn() {
+      return this.$store.state.signedIn;
+    },
+    logInAttempt() {
+      return this.$store.state.logInAttempt;
+    }
   }
 };
 </script>
 
 <style>
-.line {
-  width: 1px;
-  height: 20vh;
-  margin: 0 auto;
-  background-color: hsl(171, 100%, 41%);
-}
-
 .modal-content-opac {
   opacity: 0.3;
 }
@@ -224,11 +293,29 @@ export default {
   z-index: -2;
 }
 
-.git-icon {
-  font-size: 3em;
+#aboutMe {
+  padding-bottom: 0 !important;
 }
 
-.foote {
+.git-icon {
+  margin-left: 0.5em;
+}
+
+.top-nav {
+  background-color: transparent !important;
+  text-decoration: inherit !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.navbar-item:hover,
+.navbar-item:focus {
+  background-color: none !important;
+  color: white !important;
+  text-decoration: inherit !important;
+}
+
+.footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -245,6 +332,13 @@ export default {
   bottom: 0;
 }
 
+.line {
+  width: 1px;
+  height: 20vh;
+  background-color: hsl(171, 100%, 41%);
+  margin-left: 12px;
+}
+
 .left-bar {
   width: 3vw;
   position: fixed;
@@ -255,16 +349,31 @@ export default {
   width: 3vw;
   position: fixed;
   top: 55vh;
-  right: 0;
+  right: 15px;
   bottom: 0;
   overflow-x: hidden;
   overflow-y: hidden;
-  margin-right: 1.5vw;
+  margin-right: 0 auto;
 }
 
 .main-content {
   margin-right: 5vw;
   margin-left: 5vw;
   padding: 0px 10px;
+}
+
+.code-image {
+  width: 100%;
+}
+.code-img-container {
+  padding-right: 0 !important;
+}
+
+.dev-img-container {
+  padding-left: 0 !important;
+}
+
+.about-content {
+  padding-top: 3em;
 }
 </style>

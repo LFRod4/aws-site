@@ -6,8 +6,21 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
-    signedIn: false
+    signedIn: false,
+    logInAttempt: false
   },
-  mutations: {},
+  getters: {
+    signedIn: state => {
+      return state.signedIn;
+    }
+  },
+  mutations: {
+    checkSignedIn: (state, boolean) => {
+      state.signedIn = boolean;
+    },
+    checkLogIn: (state, boolean) => {
+      state.logInAttempt = boolean;
+    }
+  },
   actions: {}
 });

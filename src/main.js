@@ -15,7 +15,7 @@ Vue.use(AmplifyPlugin, AmplifyModules);
 import VueScrollTo from "vue-scrollto";
 Vue.use(VueScrollTo, {
   container: "body",
-  duration: 400,
+  duration: 700,
   easing: "ease",
   offset: 0,
   force: true,

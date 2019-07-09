@@ -3,10 +3,6 @@
     <div v-if="!signedIn">
       <amplify-authenticator></amplify-authenticator>
     </div>
-    <div v-if="signedIn">
-      <amplify-sign-out></amplify-sign-out>
-    </div>
-    {{ signedIn }}
   </div>
 </template>
 
@@ -28,8 +24,9 @@ export default {
     AmplifyEventBus.$on("authState", info => {
       if (info === "signedIn") {
         this.findUser();
+        this.$store.commit("checkSignedIn", true);
       } else {
-        this.$store.state.signedIn = false;
+        this.$store.commit("checkSignedIn", false);
       }
     });
   },
@@ -37,9 +34,10 @@ export default {
     async findUser() {
       try {
         const user = await Auth.currentAuthenticatedUser();
-        this.$store.state.signedIn = true;
+        this.$store.commit("checkSignedIn", true);
+        this.$store.commit("checkLogIn", false);
       } catch (err) {
-        this.$store.state.signedIn = false;
+        this.$store.commit("checkSignedIn", false);
       }
     }
   },
