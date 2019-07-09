@@ -34,13 +34,12 @@
               >
               <a
                 class="navbar-item is-size-5 has-text-white top-nav"
-                @click="logInAttempt = true"
+                @click="logInAttempt(true)"
                 >Log In</a
               >
               <a
                 v-if="signedIn === true"
                 class="navbar-item is-size-5 has-text-white top-nav"
-                @click="logInAttempt = true"
               >
                 Sign Out
                 <amplify-sign-out></amplify-sign-out>
@@ -49,7 +48,7 @@
           </div>
         </div>
       </nav>
-      <div class="modal" :class="{ 'is-active': logInAttempt }">
+      <div class="modal" :class="{ 'is-active': getLogInAttempt }">
         <div class="modal-background"></div>
         <div class="modal-content">
           <Authenticator></Authenticator>
@@ -57,7 +56,7 @@
         <button
           class="modal-close is-large"
           aria-label="close"
-          @click="logInAttempt = false"
+          @click="logInAttempt(false)"
         ></button>
       </div>
       <div class="hero-body">
@@ -249,15 +248,15 @@ export default {
   },
 
   methods: {
-    LogInAttempt() {
-      this.$store.commit("checkLogIn", true);
+    logInAttempt(boolean) {
+      this.$store.commit("checkLogIn", boolean);
     }
   },
   computed: {
     signedIn() {
       return this.$store.state.signedIn;
     },
-    logInAttempt() {
+    getLogInAttempt() {
       return this.$store.state.logInAttempt;
     }
   }
