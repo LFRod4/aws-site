@@ -248,7 +248,11 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    LogInAttempt() {
+      this.$store.commit("checkLogIn", true);
+    }
+  },
   computed: {
     signedIn() {
       return this.$store.state.signedIn;
