@@ -63,11 +63,12 @@ router.beforeResolve((to, from, next) => {
       .then(data => {
         if (data && data.signInUserSession) {
           user = data;
-          next();
         }
+        next();
       })
       .catch(e => {
         console.log(e);
+        next({ path: "/" });
       });
     if (!user) {
       next({ path: "/" });

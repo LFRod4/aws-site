@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!user">
+    <div>
       <h1>Sign Up</h1>
       <input v-model="login" type="text" placeholder="Login" />
       <br />
@@ -10,7 +10,7 @@
       <br />
       <button @click="submit">Submit</button>
     </div>
-    <div v-if="user">
+    <div>
       <h2>Confirm Sign Up</h2>
       <input v-model="code" type="text" placeholder="Code" />
       <br />
@@ -21,6 +21,7 @@
 <script>
 import { Auth } from "aws-amplify";
 export default {
+  name: "SignUp",
   data() {
     return {
       login: "",

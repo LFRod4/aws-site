@@ -8,13 +8,24 @@
             <a class="navbar-item">
               <h3 class="subtitle has-text-white is-size-5">Luis Rodriguez</h3>
             </a>
-            <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+            <span
+              class="navbar-burger burger has-text-primary"
+              data-target="navbarMenuHeroA"
+              v-on:click="showNav = !showNav"
+              :class="{ 'is-active': showNav }"
+            >
+              <span></span>
+              <span></span>
               <span></span>
               <span></span>
               <span></span>
             </span>
           </div>
-          <div id="navbarMenuHeroA" class="navbar-menu">
+          <div
+            id="navbarMenuHeroA"
+            class="navbar-menu"
+            v-bind:class="{ 'is-active': showNav }"
+          >
             <div class="navbar-end">
               <a
                 class="navbar-item is-size-5 has-text-white top-nav"
@@ -27,28 +38,28 @@
                 >About Me</a
               >
               <a
-                v-if="signedIn === true"
-                class="navbar-item is-size-5 has-text-white top-nav"
-                v-scroll-to="`#aboutMe`"
-                >About Me</a
+                v-if="signedIn"
+                class="navbar-item is-size-5 has-text-primary top-nav"
+                @click="securedPage()"
+                >Private</a
               >
               <a
+                v-if="!signedIn"
                 class="navbar-item is-size-5 has-text-white top-nav"
-                @click="logInAttempt(true)"
+                @click="modal(true)"
                 >Log In</a
               >
               <a
-                v-if="signedIn === true"
+                v-if="signedIn"
+                @click="signOut()"
                 class="navbar-item is-size-5 has-text-white top-nav"
+                >Sign Out</a
               >
-                Sign Out
-                <amplify-sign-out></amplify-sign-out>
-              </a>
             </div>
           </div>
         </div>
       </nav>
-      <div class="modal" :class="{ 'is-active': getLogInAttempt }">
+      <div class="modal" :class="{ 'is-active': getModal }">
         <div class="modal-background"></div>
         <div class="modal-content">
           <Authenticator></Authenticator>
@@ -56,7 +67,7 @@
         <button
           class="modal-close is-large"
           aria-label="close"
-          @click="logInAttempt(false)"
+          @click="modal(false)"
         ></button>
       </div>
       <div class="hero-body">
@@ -105,9 +116,9 @@
                         target="_blank"
                       >
                         <span class="icon is-small">
-                          <i class="fab fa-github"></i>
+                          <i class="fas fa-code"></i>
                         </span>
-                        <span>GitHub</span>
+                        <span>Code</span>
                       </a>
                     </div>
                   </div>
@@ -142,12 +153,12 @@
                       <a
                         class="button is-primary is-outlined git-icon"
                         href="https://github.com/LFRod4/Angular-JS-Quiz"
-                        target="_blank"
+                        target="_target"
                       >
                         <span class="icon is-small">
-                          <i class="fab fa-github"></i>
+                          <i class="fas fa-code"></i>
                         </span>
-                        <span>GitHub</span>
+                        <span>Code</span>
                       </a>
                     </div>
                   </div>
@@ -156,12 +167,12 @@
               <div class="tile is-parent">
                 <div class="card">
                   <header class="card-header">
-                    <p class="card-header-title title">VueJS</p>
+                    <p class="card-header-title title">Skags Generator</p>
                   </header>
                   <div class="card-image">
                     <figure class="image is-4by3">
                       <img
-                        src="https://bulma.io/images/placeholders/1280x960.png"
+                        src="../assets/images/skags.png"
                         alt="Placeholder image"
                       />
                     </figure>
@@ -173,14 +184,21 @@
                     </p>
                     <p class="subtitle">Jeff Atwood</p>
                     <div class="container">
-                      <button class="button is-primary is-outlined">
-                        Check It Out
-                      </button>
-                      <a class="button is-primary is-outlined git-icon">
+                      <a
+                        class="button is-primary is-outlined"
+                        href="https://meetkite.com/skag/"
+                        target="_blank"
+                        >Check It Out</a
+                      >
+                      <a
+                        class="button is-outlined git-icon not-loggedin"
+                        href="#"
+                        title="N/A"
+                      >
                         <span class="icon is-small">
-                          <i class="fab fa-github"></i>
+                          <i class="fas fa-code"></i>
                         </span>
-                        <span>GitHub</span>
+                        <span>Code</span>
                       </a>
                     </div>
                   </div>
@@ -205,7 +223,7 @@
           </div>
         </section>
       </div>
-      <div class="column right-bar">
+      <div class="column right-bar is-hidden-touch">
         <div class="email has-text-primary">Rodriguezlf4@gmail.com</div>
         <br />
         <div class="line"></div>
@@ -233,6 +251,9 @@
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
+import { AmplifyEventBus } from "aws-amplify-vue";
+import axios from "axios";
 // @ is an alias to /src
 import Authenticator from "@/components/Authenticator.vue";
 
@@ -243,21 +264,78 @@ export default {
   },
   data: function() {
     return {
-      info: ""
+      info: "",
+      showNav: false
     };
   },
+  created() {
+    this.findUser();
 
+    AmplifyEventBus.$on("authState", info => {
+      if (info === "signedIn") {
+        this.findUser();
+        this.$store.commit("checkSignedIn", true);
+      } else {
+        this.$store.commit("checkSignedIn", false);
+      }
+    });
+  },
   methods: {
-    logInAttempt(boolean) {
-      this.$store.commit("checkLogIn", boolean);
+    securedPage() {
+      this.$router.push("about");
+    },
+    modal(boolean) {
+      this.$store.commit("modal", boolean);
+    },
+    signOut() {
+      Auth.signOut()
+        .then(data => {
+          this.$store.state.signedIn = !!data;
+        })
+        .catch(err => console.log(err));
+    },
+    async findUser() {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        this.$store.commit("checkSignedIn", true);
+        this.$store.commit("modal", false);
+        this.$store.commit("checkUser", user);
+      } catch (err) {
+        this.$store.commit("checkSignedIn", false);
+        this.$store.commit("checkUser", null);
+      }
     }
   },
   computed: {
+    placeholder() {
+      return this.signedIn ? "" : "Click to login";
+    },
     signedIn() {
       return this.$store.state.signedIn;
     },
-    getLogInAttempt() {
-      return this.$store.state.logInAttempt;
+    getModal() {
+      return this.$store.state.modal;
+    }
+  },
+  mounted() {
+    if (this.$store.state.user) {
+      const jwt = this.$store.state.user
+        .getSignInUserSession()
+        .getIdToken()
+        .getJwtToken();
+      const config = {
+        headers: {
+          authorization: jwt
+        }
+      };
+      console.log(jwt);
+      axios
+        .get(
+          "https://c4pumknsvf.execute-api.eu-west-1.amazonaws.com/V1",
+          config
+        )
+        .then(val => (this.info = val))
+        .catch(err => console.log(err));
     }
   }
 };
@@ -351,7 +429,7 @@ export default {
 .right-bar {
   width: 3vw;
   position: fixed;
-  top: 55vh;
+  top: 60vh;
   right: 15px;
   bottom: 0;
   overflow-x: hidden;
@@ -378,5 +456,15 @@ export default {
 
 .about-content {
   padding-top: 3em;
+}
+
+.not-loggedin {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.not-loggedin:hover {
+  text-decoration: none;
+  cursor: default;
 }
 </style>
