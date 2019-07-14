@@ -1,6 +1,6 @@
 # aws-site
 
-http://aws-site-20190706092215-hostingbucket-develop.s3-website-eu-west-1.amazonaws.com/
+https://littleluis.dev/
 
 ## Project setup
 
