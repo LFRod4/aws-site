@@ -26,9 +26,11 @@ export default new Vuex.Store({
           "Vue CLI",
           "Axios",
           "NPM",
+          "API Gateway",
           "Amazon S3",
           "Amazon Cloudfront",
           "Amazon Route 53",
+          "AWS Lambda",
           "AWS Amplify",
           "AWS CLI"
         ]
