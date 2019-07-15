@@ -28,7 +28,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import About from "./views/About.vue";
+import Private from "./views/Private.vue";
 import SignUp from "./components/SignUp.vue";
 
 Vue.use(Router);
@@ -43,9 +43,9 @@ const router = new Router({
       component: Home
     },
     {
-      path: "/about",
-      name: "about",
-      component: About,
+      path: "/private",
+      name: "private",
+      component: Private,
       meta: { requiresAuth: true }
     },
     {

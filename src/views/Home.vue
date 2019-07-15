@@ -1,73 +1,20 @@
 <template>
   <div>
-    <!-- Hero content: will be in the middle -->
     <section id="top" class="hero is-fullheight">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <a class="navbar-item">
-              <h3 class="subtitle has-text-white is-size-5">Luis Rodriguez</h3>
-            </a>
-            <span
-              class="navbar-burger burger has-text-primary"
-              data-target="navbarMenuHeroA"
-              v-on:click="showNav = !showNav"
-              :class="{ 'is-active': showNav }"
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </div>
-          <div
-            id="navbarMenuHeroA"
-            class="navbar-menu"
-            v-bind:class="{ 'is-active': showNav }"
-          >
-            <div class="navbar-end">
-              <a
-                class="navbar-item is-size-5 has-text-white top-nav"
-                v-scroll-to="`#projects`"
-                >Projects</a
-              >
-              <a
-                class="navbar-item is-size-5 has-text-white top-nav"
-                v-scroll-to="`#aboutMe`"
-                >About Me</a
-              >
-              <a
-                v-if="signedIn"
-                class="navbar-item is-size-5 has-text-primary top-nav"
-                @click="securedPage()"
-                >Private</a
-              >
-              <a
-                v-if="!signedIn"
-                class="navbar-item is-size-5 has-text-white top-nav"
-                @click="modal(true)"
-                >Log In</a
-              >
-              <a
-                v-if="signedIn"
-                @click="signOut()"
-                class="navbar-item is-size-5 has-text-white top-nav"
-                >Sign Out</a
-              >
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Nav></Nav>
       <div class="modal" :class="{ 'is-active': getModal }">
         <div class="modal-background"></div>
         <div class="modal-content">
-          <Authenticator></Authenticator>
+          <Authenticator v-if="loginModal"></Authenticator>
+          <SignUp v-if="!loginModal"></SignUp>
         </div>
         <button
           class="modal-close is-large"
           aria-label="close"
-          @click="modal(false)"
+          @click="
+            modal(false);
+            changeModal(true);
+          "
         ></button>
       </div>
       <div class="hero-body">
@@ -85,124 +32,12 @@
           <div class="container">
             <h1 class="title">Projects</h1>
             <div class="tile is-ancestor">
-              <div class="tile is-parent">
-                <div class="card">
-                  <header class="card-header">
-                    <p class="card-header-title title">Personal Site</p>
-                  </header>
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        src="../assets/images/portfolio.png"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <p class="sub-title">
-                      “There are two hard things in computer science: cache
-                      invalidation, naming things, and off-by-one errors.”
-                    </p>
-                    <p class="subtitle">Jeff Atwood</p>
-                    <div class="container">
-                      <a
-                        class="button is-primary is-outlined"
-                        v-scroll-to="`#top`"
-                        >Check It Out</a
-                      >
-                      <a
-                        class="button is-primary is-outlined git-icon"
-                        href="https://github.com/LFRod4/aws-site"
-                        target="_blank"
-                      >
-                        <span class="icon is-small">
-                          <i class="fas fa-code"></i>
-                        </span>
-                        <span>Code</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tile is-parent">
-                <div class="card">
-                  <header class="card-header">
-                    <p class="card-header-title title">Angular Quiz</p>
-                  </header>
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        src="../assets/images/angular-quiz.png"
-                        alt="Angular Quiz"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <p class="sub-title">
-                      “There are two hard things in computer science: cache
-                      invalidation, naming things, and off-by-one errors.”
-                    </p>
-                    <p class="subtitle">Jeff Atwood</p>
-                    <div class="container">
-                      <a
-                        class="button is-primary is-outlined"
-                        href="https://vigorous-poincare-7385ea.netlify.com/"
-                        target="_blank"
-                        >Check It Out</a
-                      >
-                      <a
-                        class="button is-primary is-outlined git-icon"
-                        href="https://github.com/LFRod4/Angular-JS-Quiz"
-                        target="_target"
-                      >
-                        <span class="icon is-small">
-                          <i class="fas fa-code"></i>
-                        </span>
-                        <span>Code</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tile is-parent">
-                <div class="card">
-                  <header class="card-header">
-                    <p class="card-header-title title">Skags Generator</p>
-                  </header>
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        src="../assets/images/skags.png"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <p class="sub-title">
-                      “There are two hard things in computer science: cache
-                      invalidation, naming things, and off-by-one errors.”
-                    </p>
-                    <p class="subtitle">Jeff Atwood</p>
-                    <div class="container">
-                      <a
-                        class="button is-primary is-outlined"
-                        href="https://meetkite.com/skag/"
-                        target="_blank"
-                        >Check It Out</a
-                      >
-                      <a
-                        class="button is-outlined git-icon not-loggedin"
-                        href="#"
-                        title="N/A"
-                      >
-                        <span class="icon is-small">
-                          <i class="fas fa-code"></i>
-                        </span>
-                        <span>Code</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              <div
+                class="tile is-parent"
+                v-for="(project, index) in projects"
+                :key="project.id"
+              >
+                <Cards class="cards-component" :title="index"></Cards>
               </div>
             </div>
           </div>
@@ -241,7 +76,9 @@
               <a v-scroll-to="`#aboutMe`">About Me</a>
             </li>
             <li>
-              <a v-scroll-to="`#top`">Sign In</a>
+              <a v-if="!signedIn" v-scroll-to="`#top`" @click="modal(true)"
+                >Sign In</a
+              >
             </li>
           </ul>
         </div>
@@ -256,16 +93,25 @@ import { AmplifyEventBus } from "aws-amplify-vue";
 import axios from "axios";
 // @ is an alias to /src
 import Authenticator from "@/components/Authenticator.vue";
+import Nav from "@/components/Nav.vue";
+import SignUp from "@/components/SignUp.vue";
+import Cards from "@/components/Cards.vue";
 
 export default {
   name: "home",
   components: {
-    Authenticator
+    Authenticator,
+    SignUp,
+    Cards,
+    Nav
   },
   data: function() {
     return {
       info: "",
-      showNav: false
+      frontCard: true,
+      isShowing: false,
+      clearClass: "clear",
+      blurClass: "blur"
     };
   },
   created() {
@@ -281,18 +127,14 @@ export default {
     });
   },
   methods: {
-    securedPage() {
-      this.$router.push("about");
+    toggleShow() {
+      this.isShowing = !this.isShowing;
+    },
+    changeModal(boolean) {
+      this.$store.commit("changeModal", boolean);
     },
     modal(boolean) {
       this.$store.commit("modal", boolean);
-    },
-    signOut() {
-      Auth.signOut()
-        .then(data => {
-          this.$store.state.signedIn = !!data;
-        })
-        .catch(err => console.log(err));
     },
     async findUser() {
       try {
@@ -307,6 +149,9 @@ export default {
     }
   },
   computed: {
+    projects() {
+      return this.$store.state.projects;
+    },
     placeholder() {
       return this.signedIn ? "" : "Click to login";
     },
@@ -315,6 +160,9 @@ export default {
     },
     getModal() {
       return this.$store.state.modal;
+    },
+    loginModal() {
+      return this.$store.state.loginModal;
     }
   },
   mounted() {
@@ -342,6 +190,27 @@ export default {
 </script>
 
 <style>
+.clear {
+  transition: opacity 1s;
+}
+.blur {
+  filter: blur(1px);
+  opacity: 0.5;
+}
+.cards-component {
+  min-width: 100%;
+  min-height: 100%;
+}
+.card-enter,
+.card-leave-to {
+  opacity: 0;
+  transform: rotateY(90deg);
+}
+
+.card-enter-active,
+.card-leave-active {
+  transition: all 0.5s;
+}
 .modal-content-opac {
   opacity: 0.3;
 }
