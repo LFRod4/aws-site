@@ -2,7 +2,7 @@
 
 https://littleluis.dev/
 Login:
-Username: welcome1
+Username: welcome1  
 Password: welcome1
 
 ## Project setup
