@@ -65,7 +65,7 @@
       </div>
     </div>
     <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
+    <!-- <div class="hero-foot">
       <nav class="tabs is-boxed is-fullwidth">
         <div class="container">
           <ul>
@@ -83,7 +83,8 @@
           </ul>
         </div>
       </nav>
-    </div>
+    </div>-->
+    <Footer></Footer>
   </div>
 </template>
 
@@ -96,6 +97,7 @@ import Authenticator from "@/components/Authenticator.vue";
 import Nav from "@/components/Nav.vue";
 import SignUp from "@/components/SignUp.vue";
 import Cards from "@/components/Cards.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "home",
@@ -103,7 +105,8 @@ export default {
     Authenticator,
     SignUp,
     Cards,
-    Nav
+    Nav,
+    Footer
   },
   data: function() {
     return {

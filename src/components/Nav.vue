@@ -7,7 +7,7 @@
             <h3 class="subtitle has-text-white is-size-5">Luis Rodriguez</h3>
           </a>
           <span
-            class="navbar-burger burger has-text-primary"
+            class="navbar-burger burger has-text-white"
             data-target="navbarMenuHeroA"
             v-on:click="showNav = !showNav"
             :class="{ 'is-active': showNav }"
@@ -95,4 +95,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style>
+.navbar-end a {
+  color: hsl(171, 100%, 41%) !important;
+}
+</style>
