@@ -44,7 +44,7 @@
             <a
               v-if="!signedIn"
               class="navbar-item is-size-5 has-text-white top-nav"
-              @click="modal(true)"
+              @click="activeModal(true)"
               >Log In</a
             >
             <a
@@ -76,8 +76,8 @@ export default {
     securedPage() {
       this.$router.push("private");
     },
-    modal(boolean) {
-      this.$store.commit("modal", boolean);
+    activeModal(boolean) {
+      this.$store.commit("activeModal", boolean);
     },
     signOut() {
       Auth.signOut()

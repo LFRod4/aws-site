@@ -4,6 +4,11 @@
   </div>
 </template>
 
+<script>
+import "./assets/stylesheets/main.scss";
+export default {};
+</script>
+
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -17,5 +22,10 @@ body,
 html {
   height: 100%;
   scroll-behavior: smooth;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
 }
 </style>

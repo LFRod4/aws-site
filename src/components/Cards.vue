@@ -3,32 +3,29 @@
     <transition name="card" mode="out-in">
       <div class="card" v-if="frontCard" key="front">
         <header class="card-header">
-          <p class="card-header-title title">
-            {{ projects[title]["frontTitle"] }}
-          </p>
+          <p class="card-header-title title">{{ project["frontTitle"] }}</p>
         </header>
         <div class="card-image">
           <figure class="image is-4by3">
-            <img :src="projects[title]['image']" alt="Placeholder image" />
+            <img :src="project['image']" alt="Placeholder image" />
           </figure>
         </div>
         <div class="card-content">
-          <p class="sub-title text-content">
-            {{ projects[title]["frontContent"] }}
-          </p>
+          <p class="sub-title text-content">{{ project["frontContent"] }}</p>
           <br />
           <div class="columns">
             <div class="column">
               <a
-                v-if="title != 0"
+                v-if="project != 0"
                 class="button is-primary is-outlined git-icon"
-                :href="projects[title]['liveURL']"
+                :disabled="!project['liveURL']"
+                :href="project['liveURL']"
                 target="_blank"
               >
                 <span>Check It Out</span>
               </a>
               <a
-                v-if="title == 0"
+                v-if="project == 0"
                 class="button is-primary is-outlined git-icon"
                 v-scroll-to="'#top'"
               >
@@ -38,8 +35,8 @@
             <div class="column">
               <a
                 class="button is-primary is-outlined git-icon"
-                :disabled="!projects[title]['gitURL']"
-                :href="projects[title]['gitURL']"
+                :disabled="!project['gitURL']"
+                :href="project['gitURL']"
                 target="_blank"
               >
                 <span class="icon is-small">
@@ -69,12 +66,12 @@
         <div class="card-content">
           <div class="content">
             <ul>
-              <li v-for="item in projects[title]['languages']" :key="item.id">
+              <li v-for="item in project['languages']" :key="item.id">
                 {{ item }}
               </li>
             </ul>
           </div>
-          <p class="title">{{ projects[title]["frontTitle"] }}</p>
+          <p class="title">{{ project["frontTitle"] }}</p>
           <div class="container">
             <a
               class="button is-primary is-outlined git-icon"
@@ -95,7 +92,7 @@
 <script>
 export default {
   name: "Cards",
-  props: ["title"],
+  props: ["project"],
   data() {
     return {
       frontCard: true
@@ -115,6 +112,7 @@ export default {
 <style scoped>
 .text-content {
   text-align: left;
+  min-height: 100px;
 }
 
 li {

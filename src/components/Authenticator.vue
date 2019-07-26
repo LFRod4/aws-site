@@ -85,7 +85,7 @@ export default {
         .then(user => {
           this.$store.commit("signIn", user);
           this.$store.commit("setUser", user);
-          this.$store.commit("modal", false);
+          this.$store.commit("activeModal", false);
           console.log(
             "No credentials... You might see this error in console after logging in but this is a AWS Amplify issue at the moment"
           );

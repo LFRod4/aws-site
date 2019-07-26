@@ -1,22 +1,5 @@
 <template>
   <div>
-    <!-- <div v-if="!user">
-      <h1>Sign Up</h1>
-      <input v-model="login" type="text" placeholder="Login" />
-      <br />
-      <input v-model="password" type="password" placeholder="Password" />
-      <br />
-      <input v-model="email" type="email" placeholder="Email" />
-      <br />
-      <button @click="submit">Submit</button>
-    </div>
-    <div v-if="user">
-      <h2>Confirm Sign Up</h2>
-      <input v-model="code" type="text" placeholder="Code" />
-      <br />
-      <button @click="confirm">Submit</button>
-    </div>-->
-
     <div class="modal-container">
       <div class="form-container">
         <div v-if="!user">
@@ -75,6 +58,16 @@
           <br />
           <div class="field">
             <div class="control">
+              <p class="is-size-7 create-account">
+                Already have account?
+                <a href="#" class="has-text-primary" @click="changeModal(true)"
+                  >Log in</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
               <a class="button is-primary" @click="submit()">Submit</a>
             </div>
           </div>
@@ -124,12 +117,15 @@ export default {
     };
   },
   methods: {
+    changeModal(boolean) {
+      this.$store.commit("changeModal", boolean);
+    },
     confirm() {
       Auth.confirmSignUp(this.login, this.code, {
         forceAliasCreation: true
       })
         .then(data => {
-          this.$store.commit("modal", false);
+          this.$store.commit("activeModal", false);
           this.$store.commit("changeModal");
         })
         .catch(err => (this.error2 = err.message));

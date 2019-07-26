@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <section class="hero is-fullheight top">
       <nav class="navbar">
         <div class="container">
@@ -19,7 +19,11 @@
               <span></span>
             </span>
           </div>
-          <div id="navbarMenuHeroA" class="navbar-menu" v-bind:class="{ 'is-active': showNav }"">
+          <div
+            id="navbarMenuHeroA"
+            class="navbar-menu"
+            v-bind:class="{ 'is-active': showNav }"
+          >
             <div class="navbar-end">
               <a
                 class="navbar-item is-size-5 has-text-primary top-nav"

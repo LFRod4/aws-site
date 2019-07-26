@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="page">
     <section id="top" class="hero is-fullheight">
       <Nav></Nav>
-      <div class="modal" :class="{ 'is-active': getModal }">
+      <div class="modal" :class="{ 'is-active': checkActiveModal }">
         <div class="modal-background"></div>
         <div class="modal-content">
           <Authenticator v-if="loginModal"></Authenticator>
@@ -12,7 +12,7 @@
           class="modal-close is-large"
           aria-label="close"
           @click="
-            modal(false);
+            activeModal(false);
             changeModal(true);
           "
         ></button>
@@ -32,14 +32,29 @@
           <div class="container">
             <h1 class="title">Projects</h1>
             <div class="tile is-ancestor">
-              <div
-                class="tile is-parent"
-                v-for="(project, index) in projects"
-                :key="project.id"
-              >
-                <Cards class="cards-component" :title="index"></Cards>
+              <div class="tile is-parent">
+                <Cards
+                  v-if="showProjects[0]"
+                  class="cards-component"
+                  :project="showProjects[0]"
+                ></Cards>
+              </div>
+              <div class="tile is-parent">
+                <Cards
+                  v-if="showProjects[1]"
+                  class="cards-component"
+                  :project="showProjects[1]"
+                ></Cards>
+              </div>
+              <div class="tile is-parent">
+                <Cards
+                  v-if="showProjects[2]"
+                  class="cards-component"
+                  :project="showProjects[2]"
+                ></Cards>
               </div>
             </div>
+            <Pagination></Pagination>
           </div>
         </section>
         <section id="aboutMe" class="section">
@@ -65,39 +80,22 @@
       </div>
     </div>
     <!-- Hero footer: will stick at the bottom -->
-    <!-- <div class="hero-foot">
-      <nav class="tabs is-boxed is-fullwidth">
-        <div class="container">
-          <ul>
-            <li>
-              <a v-scroll-to="`#projects`">Projects</a>
-            </li>
-            <li>
-              <a v-scroll-to="`#aboutMe`">About Me</a>
-            </li>
-            <li>
-              <a v-if="!signedIn" v-scroll-to="`#top`" @click="modal(true)"
-                >Sign In</a
-              >
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>-->
     <Footer></Footer>
   </div>
 </template>
 
 <script>
-import { Auth } from "aws-amplify";
 import { AmplifyEventBus } from "aws-amplify-vue";
+import { Auth } from "aws-amplify";
 import axios from "axios";
+import { mapState } from "vuex";
 // @ is an alias to /src
 import Authenticator from "@/components/Authenticator.vue";
 import Nav from "@/components/Nav.vue";
 import SignUp from "@/components/SignUp.vue";
 import Cards from "@/components/Cards.vue";
 import Footer from "@/components/Footer.vue";
+import Pagination from "@/components/Pagination.vue";
 
 export default {
   name: "home",
@@ -105,6 +103,7 @@ export default {
     Authenticator,
     SignUp,
     Cards,
+    Pagination,
     Nav,
     Footer
   },
@@ -136,14 +135,13 @@ export default {
     changeModal(boolean) {
       this.$store.commit("changeModal", boolean);
     },
-    modal(boolean) {
-      this.$store.commit("modal", boolean);
+    activeModal(boolean) {
+      this.$store.commit("activeModal", boolean);
     },
     async findUser() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         this.$store.commit("checkSignedIn", true);
-        this.$store.commit("modal", false);
         this.$store.commit("checkUser", user);
       } catch (err) {
         this.$store.commit("checkSignedIn", false);
@@ -152,21 +150,18 @@ export default {
     }
   },
   computed: {
-    projects() {
-      return this.$store.state.projects;
+    showProjects() {
+      const startIndex = 2 * (this.activePage - 1);
+      const endIndex = startIndex + 3;
+      return this.projects.slice(startIndex, endIndex);
     },
-    placeholder() {
-      return this.signedIn ? "" : "Click to login";
-    },
-    signedIn() {
-      return this.$store.state.signedIn;
-    },
-    getModal() {
-      return this.$store.state.modal;
-    },
-    loginModal() {
-      return this.$store.state.loginModal;
-    }
+    ...mapState([
+      "projects",
+      "signedIn",
+      "checkActiveModal",
+      "loginModal",
+      "activePage"
+    ])
   },
   mounted() {
     if (this.$store.state.user) {
@@ -199,20 +194,6 @@ export default {
 .blur {
   filter: blur(1px);
   opacity: 0.5;
-}
-.cards-component {
-  min-width: 100%;
-  min-height: 100%;
-}
-.card-enter,
-.card-leave-to {
-  opacity: 0;
-  transform: rotateY(90deg);
-}
-
-.card-enter-active,
-.card-leave-active {
-  transition: all 0.5s;
 }
 .modal-content-opac {
   opacity: 0.3;

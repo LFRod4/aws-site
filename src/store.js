@@ -7,8 +7,9 @@ export default new Vuex.Store({
   state: {
     user: null,
     signedIn: false,
-    modal: false,
+    checkActiveModal: false,
     loginModal: true,
+    activePage: 1,
     projects: [
       {
         frontTitle: "Personal Site",
@@ -62,12 +63,32 @@ export default new Vuex.Store({
           "Webpack",
           "NPM"
         ]
+      },
+      {
+        frontTitle: "REST API With Node",
+        image: require("./assets/images/node-api.png"),
+        frontContent:
+          "I used this small project to learn how to get around the basics of creating a REST API. Currently working on building the client side of this project.",
+        gitURL: "https://github.com/LFRod4/node-shop",
+        languages: [
+          "Node JS",
+          "Mongoosedb Atlas",
+          "Express",
+          "Body Parser",
+          "Morgan",
+          "Multer",
+          "Json Web Token",
+          "BCrypt"
+        ]
       }
     ]
   },
   getters: {
     signedIn: state => {
       return state.signedIn;
+    },
+    pageNumbers: state => {
+      return Math.floor(state.projects.length / 3) + 1;
     }
   },
   mutations: {
@@ -80,15 +101,22 @@ export default new Vuex.Store({
     checkSignedIn: (state, boolean) => {
       state.signedIn = boolean;
     },
-    modal: (state, boolean) => {
-      state.modal = boolean;
-    },
     checkUser: (state, status) => {
       state.user = status;
     },
     changeModal: (state, boolean) => {
       state.loginModal = boolean;
+    },
+    changePage: (state, page) => {
+      state.activePage = page;
+    },
+    activeModal: (state, boolean) => {
+      state.checkActiveModal = boolean;
     }
   },
-  actions: {}
+  actions: {
+    changePage: (context, page) => {
+      context.commit("changePage", page);
+    }
+  }
 });
