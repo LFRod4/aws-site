@@ -10,7 +10,7 @@
             <a v-scroll-to="`#aboutMe`">About Me</a>
           </li>
           <li>
-            <a v-if="!signedIn" v-scroll-to="`#top`" @click="modal(true)"
+            <a v-if="!signedIn" v-scroll-to="`#top`" @click="activeModal(true)"
               >Sign In</a
             >
             <a v-if="signedIn" @click="securedPage()">Private</a>
@@ -28,8 +28,8 @@ export default {
     securedPage() {
       this.$router.push("private");
     },
-    modal(boolean) {
-      this.$store.commit("modal", boolean);
+    activeModal(boolean) {
+      this.$store.commit("activeModal", boolean);
     }
   },
   computed: {
