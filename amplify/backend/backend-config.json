@@ -6,18 +6,14 @@
 		}
 	},
 	"auth": {
-		"awssitea2e4615f": {
+		"littleluisfd857a77": {
 			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
 		}
 	},
 	"function": {
-		"awssitea781ef44": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
-		},
-		"awssite3cc6f0e2": {
+		"littleluis96cc9d2e": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true

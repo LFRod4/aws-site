@@ -1,12 +1,9 @@
 {
-    "identityPoolName": "awssitea2e4615f_identitypool_a2e4615f",
+    "identityPoolName": "littleluisfd857a77_identitypool_fd857a77",
     "allowUnauthenticatedIdentities": false,
-    "lambdaLogPolicy": "awssit_a2e4615f_lambda_log_policy",
-    "openIdLambdaRoleName": "awssit_a2e4615f_openid_lambda_role",
-    "openIdRolePolicy": "awssit_a2e4615f_openid_pass_role_policy",
-    "openIdLambdaIAMPolicy": "awssit_a2e4615f_openid_lambda_iam_policy",
-    "openIdLogPolicy": "awssit_a2e4615f_openid_lambda_log_policy",
-    "userPoolName": "awssitea2e4615f_userpool_a2e4615f",
+    "openIdLambdaRoleName": "littlefd857a77_openid_lambda_role",
+    "resourceNameTruncated": "littlefd857a77",
+    "userPoolName": "littleluisfd857a77_userpool_fd857a77",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -14,9 +11,6 @@
     "mfaTypes": [
         "SMS Text Message"
     ],
-    "roleName": "awssita2e4615f_sns-role",
-    "roleExternalId": "awssita2e4615f_role_external_id",
-    "policyName": "awssita2e4615f-sns-policy",
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
@@ -27,7 +21,7 @@
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientName": "awssita2e4615f_app_client",
+    "userpoolClientName": "littlefd857a77_app_client",
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -36,15 +30,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "mfaLambdaRole": "awssita2e4615f_totp_lambda_role",
-    "mfaLambdaLogPolicy": "awssita2e4615f_totp_lambda_log_policy",
-    "mfaPassRolePolicy": "awssita2e4615f_totp_pass_role_policy",
-    "mfaLambdaIAMPolicy": "awssita2e4615f_totp_lambda_iam_policy",
-    "userpoolClientLambdaRole": "awssita2e4615f_userpoolclient_lambda_role",
-    "userpoolClientLogPolicy": "awssita2e4615f_userpoolclient_lambda_log_policy",
-    "userpoolClientLambdaPolicy": "awssita2e4615f_userpoolclient_lambda_iam_policy",
+    "mfaLambdaRole": "littlefd857a77_totp_lambda_role",
+    "userpoolClientLambdaRole": "littlefd857a77_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "awssitea2e4615f",
+    "resourceName": "littleluisfd857a77",
     "authSelections": "identityPoolAndUserPool",
     "authRoleName": {
         "Ref": "AuthRoleName"
@@ -64,5 +53,7 @@
             "Arn"
         ]
     },
-    "useDefault": "default"
+    "useDefault": "default",
+    "additionalQuestions": [],
+    "dependsOn": []
 }

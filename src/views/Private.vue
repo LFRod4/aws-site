@@ -106,7 +106,7 @@ export default {
 
       axios
         .get(
-          "https://c4pumknsvf.execute-api.eu-west-1.amazonaws.com/V1",
+          "https://zv30nmh3e2.execute-api.us-west-2.amazonaws.com/v1",
           config
         )
         .then(val => (this.info = val))

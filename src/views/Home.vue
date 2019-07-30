@@ -151,7 +151,7 @@ export default {
   },
   computed: {
     showProjects() {
-      const startIndex = 2 * (this.activePage - 1);
+      const startIndex = 3 * (this.activePage - 1);
       const endIndex = startIndex + 3;
       return this.projects.slice(startIndex, endIndex);
     },
@@ -177,7 +177,7 @@ export default {
       console.log(jwt);
       axios
         .get(
-          "https://c4pumknsvf.execute-api.eu-west-1.amazonaws.com/V1",
+          "https://zv30nmh3e2.execute-api.us-west-2.amazonaws.com/v1",
           config
         )
         .then(val => (this.info = val))

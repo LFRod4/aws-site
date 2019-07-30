@@ -28,12 +28,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"aws-site",
+						"littleluis96cc9d2e",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"aws-site",
+									"littleluis96cc9d2e",
 									"-",
 									{
 										"Ref": "env"
@@ -59,11 +59,11 @@
 						"Arn"
 					]
 				},
-				"Runtime": "nodejs8.10",
+				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "aws-site-develop-20190706092022-deployment",
-					"S3Key": "amplify-builds/awssite3cc6f0e2-596a4f454369382b5467-build.zip"
+					"S3Bucket": "little-luis-dev-20190729155851-deployment",
+					"S3Key": "amplify-builds/littleluis96cc9d2e-654b756b4f4d38554e71-build.zip"
 				}
 			}
 		},
@@ -73,12 +73,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"awssiteLambdaRole2270c713",
+						"littleluisLambdaRole1fe8cb6e",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"awssiteLambdaRole2270c713",
+									"littleluisLambdaRole1fe8cb6e",
 									"-",
 									{
 										"Ref": "env"
@@ -167,6 +167,11 @@
 		"Region": {
 			"Value": {
 				"Ref": "AWS::Region"
+			}
+		},
+		"LambdaExecutionRole": {
+			"Value": {
+				"Ref": "LambdaExecutionRole"
 			}
 		}
 	}

@@ -126,7 +126,7 @@ export default {
       })
         .then(data => {
           this.$store.commit("activeModal", false);
-          this.$store.commit("changeModal");
+          this.$store.commit("changeModal", true);
         })
         .catch(err => (this.error2 = err.message));
     },

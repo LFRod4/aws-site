@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import "./assets/stylesheets/main.scss";
 export default {};
 </script>
 

@@ -1,9 +1,11 @@
-# aws-site
+# little-luis
 
 https://littleluis.dev/  
 Login:  
 Username: welcome1  
 Password: welcome1
+
+Web portfolio built with Vue, Vuex, Vue Router along with multiple Amazon services.
 
 ## Project setup
 
