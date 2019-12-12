@@ -49,6 +49,12 @@
                 >Create Account</a
               >
             </p>
+            <p class="is-size-7 create-account">
+              <span class="has-text-weight-bold">Username:</span> welcome1
+            </p>
+            <p class="is-size-7 create-account">
+              <span class="has-text-weight-bold">Password:</span> welcome1
+            </p>
           </div>
         </div>
         <div class="field">
@@ -105,7 +111,7 @@ export default {
 <style scoped>
 .modal-container {
   background-color: white;
-  height: 350px;
+  height: 3575x;
   padding: 20px;
   border-radius: 5px;
   z-index: 99;
