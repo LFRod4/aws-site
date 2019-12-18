@@ -80,6 +80,23 @@ export default new Vuex.Store({
           "Json Web Token",
           "BCrypt"
         ]
+      },
+      {
+        frontTitle: "Twitter Demo",
+        image: require("./assets/images/twitter.jpg"),
+        frontContent:
+          "This project is meant to replicate the basic features of Twitter, such as tweets, followers feed, your own profile, and the functionality of it all.",
+        gitURL: "https://github.com/LFRod4/vue-django",
+        languages: [
+          "Bulma",
+          "Javascript",
+          "VueJS",
+          "Vue Router",
+          "Vuex",
+          "Python",
+          "Django",
+          "SQLite"
+        ]
       }
     ]
   },
