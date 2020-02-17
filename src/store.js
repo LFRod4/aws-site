@@ -86,6 +86,8 @@ export default new Vuex.Store({
         image: require("./assets/images/twitter.jpg"),
         frontContent:
           "This project is meant to replicate the basic features of Twitter, such as tweets, followers feed, your own profile, and the functionality of it all.",
+        liveURL:
+          "http://witter-rontend-20200211165310-hostingbucket-frontdev.s3-website-us-west-2.amazonaws.com/",
         gitURL: "https://github.com/LFRod4/vue-django",
         languages: [
           "Bulma",
