@@ -12,6 +12,112 @@ export default new Vuex.Store({
     activePage: 1,
     projects: [
       {
+        frontTitle: "Angular Quiz",
+        image: require("./assets/images/angular-quiz.png"),
+        frontContent:
+          "I woke up one day and realized I knew nothing about turtles. Decided to build a quiz that will help me learn some turtle facts. Oh and Angular JS seemed like the cool thing to do at the time.",
+        liveURL: "https://vigorous-poincare-7385ea.netlify.com/",
+        gitURL: "https://github.com/LFRod4/Angular-JS-Quiz",
+        languages: ["Jade", "Bulma", "Javascript", "Angular JS", "Netifly"],
+      },
+      {
+        frontTitle: "CRM Serverless",
+        image: require("./assets/images/crm.png"),
+        frontContent:
+          "Lead management tool with a full serverless backend setup. Vue JS frontend and full a variety of Amazon Web Services for backend. Test account set up with MongoDB set up already.",
+        gitURL: "https://github.com/LFRod4/bradynce-crm",
+        liveURL: "https://env.dbvr3em9pzs7g.amplifyapp.com",
+        languages: [
+          "VueJS",
+          "Vue Router",
+          "Vuex",
+          "NodeJS",
+          "MongoDB",
+          "Amazon S3",
+          "AWS Lambda",
+          "AWS API Gateway",
+          "Amazon Cognito",
+          "Amazon Cloudfront",
+          "Amazon Route 53",
+        ],
+      },
+      {
+        frontTitle: "Skags Generator",
+        image: require("./assets/images/skags.png"),
+        frontContent:
+          "In the PPC world everyone loves a good SKAG campaign but dread the building process. This cool toy helps speed things up and avoid using the craziness of Excel.",
+        liveURL: "https://meetkite.com/skag/",
+        gitURL: false,
+        languages: [
+          "Bootstrap",
+          "Bulma",
+          "Javascript",
+          "VueJS",
+          "Vue Router",
+          "Vuex",
+          "Vue CLI",
+          "Webpack",
+          "NPM",
+        ],
+      },
+      {
+        frontTitle: "REST API With Node",
+        image: require("./assets/images/node-api.png"),
+        frontContent:
+          "I used this small project to learn how to get around the basics of creating a REST API. Currently working on building the client side of this project.",
+        gitURL: "https://github.com/LFRod4/node-shop",
+        languages: [
+          "Node JS",
+          "Mongoosedb Atlas",
+          "Express",
+          "Body Parser",
+          "Morgan",
+          "Multer",
+          "Json Web Token",
+          "BCrypt",
+        ],
+      },
+      {
+        frontTitle: "Twitter Demo",
+        image: require("./assets/images/twitter.jpg"),
+        frontContent:
+          "This project is meant to replicate the basic features of Twitter, such as tweets, followers feed, your own profile, and the functionality of it all.",
+        liveURL: "https://vimeo.com/417472997",
+        gitURL: "https://github.com/LFRod4/vue-django",
+        languages: [
+          "Bulma",
+          "Javascript",
+          "VueJS",
+          "Vue Router",
+          "Vuex",
+          "Python",
+          "Django",
+          "SQLite",
+        ],
+      },
+      {
+        frontTitle: "PPC Tool",
+        image: require("./assets/images/ppctool.png"),
+        frontContent:
+          "Digital marketing is about using data to make the right business choices. I use an API to get cost of keyword bids to calculate potential KPIs in a PPC campaign.",
+        liveURL: "https://tools.bradynce.com/",
+        gitURL: "https://github.com/LFRod4/PPCTools",
+        languages: [
+          "Bulma",
+          "VueJS",
+          "Vue Router",
+          "Vuex",
+          "Axios",
+          "Django",
+          "Django Rest Framework",
+          "Amazon S3",
+          "Amazon Cloudfront",
+          "Amazon Route 53",
+          "AWS Elastic Beanstalk",
+          "AWS Amplify",
+        ],
+      },
+      {
         frontTitle: "Personal Site",
         image: require("./assets/images/portfolio.png"),
         frontContent:
@@ -33,82 +139,18 @@ export default new Vuex.Store({
           "Amazon Route 53",
           "AWS Lambda",
           "AWS Amplify",
-          "AWS CLI"
-        ]
+          "AWS CLI",
+        ],
       },
-      {
-        frontTitle: "Angular Quiz",
-        image: require("./assets/images/angular-quiz.png"),
-        frontContent:
-          "I woke up one day and realized I knew nothing about turtles. Decided to build a quiz that will help me learn some turtle facts. Oh and Angular JS seemed like the cool thing to do at the time.",
-        liveURL: "https://vigorous-poincare-7385ea.netlify.com/",
-        gitURL: "https://github.com/LFRod4/Angular-JS-Quiz",
-        languages: ["Jade", "Bulma", "Javascript", "Angular JS", "Netifly"]
-      },
-      {
-        frontTitle: "Skags Generator",
-        image: require("./assets/images/skags.png"),
-        frontContent:
-          "In the PPC world everyone loves a good SKAG campaign but dread the building process. This cool toy helps speed things up and avoid using the craziness of Excel.",
-        liveURL: "https://meetkite.com/skag/",
-        gitURL: false,
-        languages: [
-          "Bootstrap",
-          "Bulma",
-          "Javascript",
-          "VueJS",
-          "Vue Router",
-          "Vuex",
-          "Vue CLI",
-          "Webpack",
-          "NPM"
-        ]
-      },
-      {
-        frontTitle: "REST API With Node",
-        image: require("./assets/images/node-api.png"),
-        frontContent:
-          "I used this small project to learn how to get around the basics of creating a REST API. Currently working on building the client side of this project.",
-        gitURL: "https://github.com/LFRod4/node-shop",
-        languages: [
-          "Node JS",
-          "Mongoosedb Atlas",
-          "Express",
-          "Body Parser",
-          "Morgan",
-          "Multer",
-          "Json Web Token",
-          "BCrypt"
-        ]
-      },
-      {
-        frontTitle: "Twitter Demo",
-        image: require("./assets/images/twitter.jpg"),
-        frontContent:
-          "This project is meant to replicate the basic features of Twitter, such as tweets, followers feed, your own profile, and the functionality of it all.",
-        liveURL:
-          "http://witter-rontend-20200211165310-hostingbucket-frontdev.s3-website-us-west-2.amazonaws.com/",
-        gitURL: "https://github.com/LFRod4/vue-django",
-        languages: [
-          "Bulma",
-          "Javascript",
-          "VueJS",
-          "Vue Router",
-          "Vuex",
-          "Python",
-          "Django",
-          "SQLite"
-        ]
-      }
-    ]
+    ],
   },
   getters: {
-    signedIn: state => {
+    signedIn: (state) => {
       return state.signedIn;
     },
-    pageNumbers: state => {
+    pageNumbers: (state) => {
       return Math.floor(state.projects.length / 3) + 1;
-    }
+    },
   },
   mutations: {
     signIn: (state, user) => {
@@ -131,11 +173,11 @@ export default new Vuex.Store({
     },
     activeModal: (state, boolean) => {
       state.checkActiveModal = boolean;
-    }
+    },
   },
   actions: {
     changePage: (context, page) => {
       context.commit("changePage", page);
-    }
-  }
+    },
+  },
 });

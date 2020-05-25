@@ -8,7 +8,8 @@
             "DeploymentBucketName": "little-luis-dev-20190729155851-deployment",
             "UnauthRoleName": "little-luis-dev-20190729155851-unauthRole",
             "StackName": "little-luis-dev-20190729155851",
-            "StackId": "arn:aws:cloudformation:us-west-2:543774592810:stack/little-luis-dev-20190729155851/6ee18060-b254-11e9-ac64-0688a7bf983a"
+            "StackId": "arn:aws:cloudformation:us-west-2:543774592810:stack/little-luis-dev-20190729155851/6ee18060-b254-11e9-ac64-0688a7bf983a",
+            "AmplifyAppId": "d2jnldoxpg8l6"
         },
         "categories": {
             "auth": {
