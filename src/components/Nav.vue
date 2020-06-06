@@ -35,6 +35,11 @@
               v-scroll-to="`#aboutMe`"
               >About Me</a
             >
+            <router-link
+              class="navbar-item is-size-5 has-text-white top-nav"
+              to="/blog"
+              >Blog</router-link
+            >
             <a
               v-if="signedIn"
               class="navbar-item is-size-5 has-text-primary top-nav"
@@ -69,7 +74,7 @@ export default {
     return {
       info: "",
       showNav: false,
-      frontCard: true
+      frontCard: true,
     };
   },
   methods: {
@@ -81,17 +86,17 @@ export default {
     },
     signOut() {
       Auth.signOut()
-        .then(data => {
+        .then((data) => {
           this.$store.state.signedIn = !!data;
         })
-        .catch(err => console.log(err));
-    }
+        .catch((err) => console.log(err));
+    },
   },
   computed: {
     signedIn() {
       return this.$store.state.signedIn;
-    }
-  }
+    },
+  },
 };
 </script>
 

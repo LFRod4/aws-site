@@ -13,33 +13,45 @@ const router = new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
     },
     {
       path: "/private",
       name: "private",
       component: Private,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true },
     },
     {
       path: "/signUp",
       name: "signUp",
-      component: SignUp
-    }
-  ]
+      component: SignUp,
+    },
+    {
+      path: "/blog",
+      name: "blog",
+      component: () =>
+        import(/* webpackChunkName: "blog" */ "./views/Blog.vue"),
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: () =>
+        import(/* webpackChunkName: "login" */ "./views/Login.vue"),
+    },
+  ],
 });
 
 router.beforeResolve((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     let user;
     Vue.prototype.$Amplify.Auth.currentAuthenticatedUser()
-      .then(data => {
+      .then((data) => {
         if (data && data.signInUserSession) {
           user = data;
         }
         next();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
         next({ path: "/" });
       });

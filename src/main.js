@@ -16,7 +16,7 @@ Vue.use(AmplifyPlugin, AmplifyModules);
 import VueScrollTo from "vue-scrollto";
 Vue.use(VueScrollTo, {
   container: "body",
-  duration: 700,
+  duration: 400,
   easing: "ease",
   offset: 0,
   force: true,
@@ -25,7 +25,7 @@ Vue.use(VueScrollTo, {
   onDone: false,
   onCancel: false,
   x: false,
-  y: true
+  y: true,
 });
 
 Vue.config.productionTip = false;
@@ -33,5 +33,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

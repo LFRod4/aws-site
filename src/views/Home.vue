@@ -22,6 +22,66 @@
           <h1 class="title has-text-centered has-text-white">
             Fullstack Developer
           </h1>
+          <button class="button tour-btn is-primary" @click="langModal = true">
+            See Code Meant For You
+          </button>
+          <div class="modal" :class="{ 'is-active': langModal }">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <div class="box">
+                <div class="title">Choose Your Cup of Tea</div>
+                <div class="buttons-container">
+                  <button
+                    class="button lang-btn"
+                    v-scroll-to="`#projects`"
+                    @click="langChoice('vue')"
+                  >
+                    Vue
+                  </button>
+                  <br />
+                  <button
+                    class="button lang-btn"
+                    v-scroll-to="`#projects`"
+                    @click="langChoice('angular')"
+                  >
+                    Angular
+                  </button>
+                  <br />
+                  <button
+                    class="button lang-btn"
+                    v-scroll-to="`#projects`"
+                    @click="langChoice('django')"
+                  >
+                    Django
+                  </button>
+                  <br />
+                  <button
+                    class="button lang-btn"
+                    v-scroll-to="`#projects`"
+                    @click="langChoice('node')"
+                  >
+                    Node JS
+                  </button>
+                  <br />
+                  <button
+                    class="button lang-btn"
+                    v-scroll-to="`#projects`"
+                    @click="langChoice('aws')"
+                  >
+                    AWS Serverless App
+                  </button>
+                  <br />
+                  <button class="button lang-btn" disabled>React</button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="modal-close is-large"
+              @click="langModal = false"
+              aria-label="close"
+            ></button>
+          </div>
+          <EmailForm v-if="false"></EmailForm>
         </div>
       </div>
     </section>
@@ -36,6 +96,10 @@
                 <Cards
                   v-if="showProjects[0]"
                   class="cards-component"
+                  :class="{
+                    'card-highlight':
+                      activeTitle == showProjects[0]['frontTitle'],
+                  }"
                   :project="showProjects[0]"
                 ></Cards>
               </div>
@@ -43,6 +107,10 @@
                 <Cards
                   v-if="showProjects[1]"
                   class="cards-component"
+                  :class="{
+                    'card-highlight':
+                      activeTitle == showProjects[1]['frontTitle'],
+                  }"
                   :project="showProjects[1]"
                 ></Cards>
               </div>
@@ -50,6 +118,10 @@
                 <Cards
                   v-if="showProjects[2]"
                   class="cards-component"
+                  :class="{
+                    'card-highlight':
+                      activeTitle == showProjects[2]['frontTitle'],
+                  }"
                   :project="showProjects[2]"
                 ></Cards>
               </div>
@@ -96,6 +168,7 @@ import SignUp from "@/components/SignUp.vue";
 import Cards from "@/components/Cards.vue";
 import Footer from "@/components/Footer.vue";
 import Pagination from "@/components/Pagination.vue";
+import EmailForm from "@/components/EmailForm.vue";
 
 export default {
   name: "home",
@@ -105,7 +178,8 @@ export default {
     Cards,
     Pagination,
     Nav,
-    Footer
+    Footer,
+    EmailForm,
   },
   data: function() {
     return {
@@ -113,13 +187,16 @@ export default {
       frontCard: true,
       isShowing: false,
       clearClass: "clear",
-      blurClass: "blur"
+      blurClass: "blur",
+      lang: "",
+      activeTitle: "",
+      langModal: false,
     };
   },
   created() {
     this.findUser();
 
-    AmplifyEventBus.$on("authState", info => {
+    AmplifyEventBus.$on("authState", (info) => {
       if (info === "signedIn") {
         this.findUser();
         this.$store.commit("checkSignedIn", true);
@@ -147,7 +224,18 @@ export default {
         this.$store.commit("checkSignedIn", false);
         this.$store.commit("checkUser", null);
       }
-    }
+    },
+    langChoice(lang) {
+      this.lang = lang;
+      this.langModal = false;
+      if (lang == "angular") {
+        this.activeTitle = "Angular Quiz";
+      } else if (lang == "vue" || lang == "node" || lang == "aws") {
+        this.activeTitle = "CRM Serverless";
+      } else if (lang == "django") {
+        this.activeTitle = "Twitter Demo";
+      }
+    },
   },
   computed: {
     showProjects() {
@@ -160,8 +248,8 @@ export default {
       "signedIn",
       "checkActiveModal",
       "loginModal",
-      "activePage"
-    ])
+      "activePage",
+    ]),
   },
   mounted() {
     if (this.$store.state.user) {
@@ -171,23 +259,27 @@ export default {
         .getJwtToken();
       const config = {
         headers: {
-          authorization: jwt
-        }
+          authorization: jwt,
+        },
       };
-      console.log(jwt);
       axios
         .get(
           "https://zv30nmh3e2.execute-api.us-west-2.amazonaws.com/v1",
           config
         )
-        .then(val => (this.info = val))
-        .catch(err => console.log(err));
+        .then((val) => (this.info = val))
+        .catch((err) => console.log(err));
     }
-  }
+  },
 };
 </script>
 
 <style>
+.tour-btn {
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.2em !important;
+}
 .clear {
   transition: opacity 1s;
 }
@@ -319,5 +411,19 @@ export default {
 .not-loggedin:hover {
   text-decoration: none;
   cursor: default;
+}
+
+.lang-btn {
+  width: 200px;
+  font-weight: 600;
+  background-color: hsl(171, 100%, 41%) !important;
+  border-color: hsl(171, 100%, 41%) !important;
+  color: white !important;
+  margin-top: 5px !important;
+}
+
+.card-highlight {
+  border-color: hsl(171, 100%, 41%);
+  box-shadow: 0 4px 4px 3px hsl(171, 100%, 41%);
 }
 </style>

@@ -19,17 +19,9 @@
               <span></span>
             </span>
           </div>
-          <div
-            id="navbarMenuHeroA"
-            class="navbar-menu"
-            v-bind:class="{ 'is-active': showNav }"
-          >
+          <div id="navbarMenuHeroA" class="navbar-menu" v-bind:class="{ 'is-active': showNav }">
             <div class="navbar-end">
-              <a
-                class="navbar-item is-size-5 has-text-primary top-nav"
-                @click="moveHome()"
-                >Home</a
-              >
+              <a class="navbar-item is-size-5 has-text-primary top-nav" @click="moveHome()">Home</a>
             </div>
           </div>
         </div>
@@ -41,7 +33,7 @@
             <p class="subtitle">- Ricky Bobby</p>
             <p class="protected">
               *This is a protected
-              <span class="has-text-weight-bold">route</span>/quote/info
+              <span class="has-text-weight-bold">route</span>
             </p>
           </div>
         </div>

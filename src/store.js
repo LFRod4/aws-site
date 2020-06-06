@@ -15,7 +15,7 @@ export default new Vuex.Store({
         frontTitle: "Angular Quiz",
         image: require("./assets/images/angular-quiz.png"),
         frontContent:
-          "I woke up one day and realized I knew nothing about turtles. Decided to build a quiz that will help me learn some turtle facts. Oh and Angular JS seemed like the cool thing to do at the time.",
+          "I woke up one day and realized I knew nothing about turtles. Decided to build a quiz that will help me learn some turtle facts. Angular JS seemed like the cool thing to do at the time.",
         liveURL: "https://vigorous-poincare-7385ea.netlify.com/",
         gitURL: "https://github.com/LFRod4/Angular-JS-Quiz",
         languages: ["Jade", "Bulma", "Javascript", "Angular JS", "Netifly"],
@@ -26,7 +26,8 @@ export default new Vuex.Store({
         frontContent:
           "Lead management tool with a full serverless backend setup. Vue JS frontend and full a variety of Amazon Web Services for backend. Test account set up with MongoDB set up already.",
         gitURL: "https://github.com/LFRod4/bradynce-crm",
-        liveURL: "https://env.dbvr3em9pzs7g.amplifyapp.com",
+        liveURL:
+          "http://frontend-20200527233516-hostingbucket-env.s3-website-us-west-2.amazonaws.com/",
         languages: [
           "VueJS",
           "Vue Router",
@@ -39,6 +40,24 @@ export default new Vuex.Store({
           "Amazon Cognito",
           "Amazon Cloudfront",
           "Amazon Route 53",
+        ],
+      },
+      {
+        frontTitle: "Twitter Demo",
+        image: require("./assets/images/twitter.jpg"),
+        frontContent:
+          "This project is meant to replicate the basic features of Twitter, such as tweets, followers feed, your own profile, and the functionality of it all.",
+        liveURL: "https://vimeo.com/417472997",
+        gitURL: "https://github.com/LFRod4/vue-django",
+        languages: [
+          "Bulma",
+          "Javascript",
+          "VueJS",
+          "Vue Router",
+          "Vuex",
+          "Python",
+          "Django",
+          "SQLite",
         ],
       },
       {
@@ -75,24 +94,6 @@ export default new Vuex.Store({
           "Multer",
           "Json Web Token",
           "BCrypt",
-        ],
-      },
-      {
-        frontTitle: "Twitter Demo",
-        image: require("./assets/images/twitter.jpg"),
-        frontContent:
-          "This project is meant to replicate the basic features of Twitter, such as tweets, followers feed, your own profile, and the functionality of it all.",
-        liveURL: "https://vimeo.com/417472997",
-        gitURL: "https://github.com/LFRod4/vue-django",
-        languages: [
-          "Bulma",
-          "Javascript",
-          "VueJS",
-          "Vue Router",
-          "Vuex",
-          "Python",
-          "Django",
-          "SQLite",
         ],
       },
       {

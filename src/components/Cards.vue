@@ -46,10 +46,7 @@
               </a>
             </div>
             <div class="column">
-              <a
-                class="button is-primary is-outlined git-icon"
-                @click="frontCard = false"
-              >
+              <a class="button is-primary is-outlined git-icon" @click="frontCard = false">
                 <span class="icon is-small">
                   <i class="fas fa-heartbeat"></i>
                 </span>
@@ -66,17 +63,12 @@
         <div class="card-content">
           <div class="content">
             <ul>
-              <li v-for="item in project['languages']" :key="item.id">
-                {{ item }}
-              </li>
+              <li v-for="item in project['languages']" :key="item.id">{{ item }}</li>
             </ul>
           </div>
           <p class="title">{{ project["frontTitle"] }}</p>
           <div class="container">
-            <a
-              class="button is-primary is-outlined git-icon"
-              @click="frontCard = true"
-            >
+            <a class="button is-primary is-outlined git-icon" @click="frontCard = true">
               <span class="icon is-small">
                 <i class="fas fa-hand-point-left"></i>
               </span>
